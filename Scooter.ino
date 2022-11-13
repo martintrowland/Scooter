@@ -28,8 +28,8 @@ const int LEFT_WHEEL_FAST = 120;
 const int LEFT_WHEEL_FORWARD = 100;
 const int LEFT_WHEEL_STOP = 89;
 const int LEFT_WHEEL_BACKWARD = 80;
-const int RIGHT_WHEEL_FAST = 58;
-const int RIGHT_WHEEL_FORWARD = 78;
+const int RIGHT_WHEEL_FAST = 68;
+const int RIGHT_WHEEL_FORWARD = 82;
 const int RIGHT_WHEEL_STOP = 90;
 const int RIGHT_WHEEL_BACKWARD = 100;
 
@@ -162,13 +162,13 @@ void findNewDirection() {
   do {
     wheelsLeft(200);
     delay(500);
-  } while (sonar("FindNewDirection") < 1.5 * COLLISION_DISTANCE);
+  } while (sonar("FindNewDirection") < 1.5*COLLISION_DISTANCE);
 }
 void glide(int duration) {
   feetDown(200);
   wheelsFastForward(duration);
   delay(200);
-  wheelsBackward(duration / 2);
+  wheelsBackward(duration);
 }
 void leftPirouette(int duration, int toeExtend) {
   rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, false);
@@ -205,16 +205,16 @@ void pirouette(int duration) {
   feetDown(400);
 }
 void tilt(int steps) {
-  feetDown(200);
+  feetDown(100);
   for (int i = 0; i < steps; i++) {
     leftLeg.write(LEFT_LEG_TILT, FAST_SPEED, false);
     rightLeg.write(RIGHT_LEG_TILT, SLOW_SPEED, true);
     leftLeg.wait();
-    feetDown(200);
+    feetDown(100);
     rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, false);
     leftLeg.write(LEFT_LEG_TILT, SLOW_SPEED, true);
     rightLeg.wait();
-    feetDown(200);
+    feetDown(100);
   }
   feetDown(200);
 }
@@ -225,15 +225,14 @@ void jump(int steps) {
     rightLeg.write(RIGHT_LEG_EXTEND, FAST_SPEED, true);
     leftLeg.write(LEFT_LEG_DOWN, FAST_SPEED, false);
     rightLeg.write(RIGHT_LEG_DOWN, FAST_SPEED, true);
-    delay(1000);
   }
 }
-void walkForwardOld(int steps) {
+void strutForward(int steps) {
   feetDown(100);
   for (int i = 0; i < steps; i++) {
-    leftPirouette(300, false);
+    leftPirouette(300, true);
     feetDown(100);
-    rightPirouette(300, false);
+    rightPirouette(300, true);
     feetDown(100);
   }
   feetDown(100);
@@ -250,8 +249,8 @@ void walkForward(int steps) {
     leftLeg.write(LEFT_LEG_EXTEND, FAST_SPEED, false);
     rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, true);
     rightWheel.write(RIGHT_WHEEL_FORWARD, NA, false);
-    delay(300);
-    rightWheel.write(RIGHT_WHEEL_STOP, NA, true);
+    delay(450);
+    rightWheel.write(RIGHT_WHEEL_STOP, NA, false);
     feetDown(50);
   }
   delay(100);
@@ -263,10 +262,8 @@ void walkForward(int steps) {
 void setup() {
   Serial.begin(115200);  // Open serial monitor at 115200 baud to see ping results.
   attachServos();
-  leftLeg.write(LEFT_LEG_DOWN, FAST_SPEED, true);
-  rightLeg.write(RIGHT_LEG_DOWN, FAST_SPEED, true);
-  leftWheel.write(LEFT_WHEEL_STOP, NA, true);
-  rightWheel.write(RIGHT_WHEEL_STOP, NA, true);
+  wheelsStop(200);
+  feetDown(200);
   delay(3000);
 }
 ///////////////////////////////////////////////////////////////////
@@ -275,19 +272,20 @@ void setup() {
 void loop() {
   int distance, rightDistance, leftDistance;
   int count = 0;
-  Serial.println("Start");
   if (WALK_MODE) {
+    jump(5);
     glide(2000);
-    jump(3);
-    tilt(8);
+    tilt(3);
+    strutForward(2);
     pirouette(2000);
-    walkForward(8);
+    walkForward(6);
   }
   feetUp(200);
   do {
     distance = sonar("Main");
     if (distance < COLLISION_DISTANCE) {
       Serial.println("COLLISION");
+      count=0;
       wheelsStop(0);
       wheelsBackward(400);
       wheelsRight(400);
@@ -300,15 +298,17 @@ void loop() {
         Serial.println("find new direction");
         findNewDirection();
       }
-    } else if (distance < MAX_DISTANCE / 2) {
+    } else if ((distance < MAX_DISTANCE / 2)||(count<10)) {
       wheelsForward(800);
-    } else if (WALK_MODE && (count > 100)) {
-      switch (random(5)) {
+    } else if (WALK_MODE && (count > 50)) {
+      switch (random(7)) {
         case 0: glide(2000); break;
         case 1: tilt(8); break;
         case 2: leftPirouette(2000, true); break;
         case 3: rightPirouette(2000, true); break;
-        default: walkForward(8);
+        case 4: strutForward(6); break;
+        case 5: jump(5); break;
+        default: walkForward(6);
       }
       count = 0;
       feetUp(200);

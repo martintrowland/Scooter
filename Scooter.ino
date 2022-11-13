@@ -6,6 +6,8 @@
 #include <VarSpeedServo.h>
 
 const int DEBUG = true;
+const int WALK_MODE = true;
+
 const int LEFT_WHEEL_PIN = 2;  //Arduino PIN connection
 const int RIGHT_WHEEL_PIN = 3;
 const int LEFT_LEG_PIN = 4;
@@ -16,7 +18,6 @@ const int SONIC_ECHO_PIN = 9;     // Arduino pin tied to echo pin on the ultraso
 const int MAX_DISTANCE = 200;       // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 const int COLLISION_DISTANCE = 40;  // in centimeters
 const int SHUTDOWN_TIMER = 10000;
-const int WALK_MODE = true;
 
 const int NA = 50;  //Not Apllicable
 const int SLOW_SPEED = 20;
@@ -27,8 +28,8 @@ const int LEFT_WHEEL_FAST = 120;
 const int LEFT_WHEEL_FORWARD = 100;
 const int LEFT_WHEEL_STOP = 89;
 const int LEFT_WHEEL_BACKWARD = 80;
-const int RIGHT_WHEEL_FAST = 60;
-const int RIGHT_WHEEL_FORWARD = 75;
+const int RIGHT_WHEEL_FAST = 58;
+const int RIGHT_WHEEL_FORWARD = 78;
 const int RIGHT_WHEEL_STOP = 90;
 const int RIGHT_WHEEL_BACKWARD = 100;
 
@@ -281,8 +282,8 @@ void loop() {
     tilt(8);
     pirouette(2000);
     walkForward(8);
-    feetUp(200);
   }
+  feetUp(200);
   do {
     distance = sonar("Main");
     if (distance < COLLISION_DISTANCE) {
@@ -291,31 +292,32 @@ void loop() {
       wheelsBackward(400);
       wheelsRight(400);
       rightDistance = sonar("Right");
-      wheelsLeft(600);
+      wheelsLeft(800);
       leftDistance = sonar("Left");
       if ((rightDistance > leftDistance) && (rightDistance > COLLISION_DISTANCE)) {
-        wheelsRight(700);
+        wheelsRight(800);
       } else if (leftDistance < COLLISION_DISTANCE) {
         Serial.println("find new direction");
         findNewDirection();
       }
     } else if (distance < MAX_DISTANCE / 2) {
-      wheelsForward(400);
-    } else if ((count > 100) && (!(random(10) % 8))) {
+      wheelsForward(800);
+    } else if (WALK_MODE && (count > 100)) {
       switch (random(5)) {
         case 0: glide(2000); break;
         case 1: tilt(8); break;
-        case 2: leftPirouette(2000,true); break;
+        case 2: leftPirouette(2000, true); break;
         case 3: rightPirouette(2000, true); break;
         default: walkForward(8);
       }
-      count=0;
+      count = 0;
       feetUp(200);
     } else {
       wheelsFastForward(800);
     }
+    ++count;
     Serial.println(count);
-  } while (++count < SHUTDOWN_TIMER);
+  } while (true);
   detachServos();
   exit(0);
 }

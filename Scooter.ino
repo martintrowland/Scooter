@@ -162,13 +162,43 @@ void findNewDirection() {
   do {
     wheelsLeft(200);
     delay(500);
-  } while (sonar("FindNewDirection") < 1.5*COLLISION_DISTANCE);
+  } while (sonar("FindNewDirection") < 1.5 * COLLISION_DISTANCE);
 }
-void glide(int duration) {
+void glideForward(int duration) {
   feetDown(200);
   wheelsFastForward(duration);
-  delay(200);
+}
+void glideBackward(int duration) {
+  feetDown(200);
   wheelsBackward(duration);
+}
+void glideLeft(int duration) {
+  feetDown(200);
+  leftWheel.write(LEFT_WHEEL_FORWARD, NA, false);
+  rightWheel.write(RIGHT_WHEEL_BACKWARD, NA, false);
+  wheelsStop(duration);
+}
+void glideRight(int duration) {
+  feetDown(200);
+  rightWheel.write(RIGHT_WHEEL_FORWARD, NA, false);
+  leftWheel.write(LEFT_WHEEL_BACKWARD, NA, false);
+  wheelsStop(duration);
+}
+void glideTilt(int steps) {
+  feetDown(100);
+  leftWheel.write(LEFT_WHEEL_FORWARD, NA, false);
+  rightWheel.write(RIGHT_WHEEL_BACKWARD, NA, false);
+  for (int i = 0; i < steps; i++) {
+    leftLeg.write(LEFT_LEG_TILT, FAST_SPEED, false);
+    rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, true);
+    leftLeg.wait();
+    feetDown(100);
+    rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, false);
+    leftLeg.write(LEFT_LEG_TILT, SLOW_SPEED, true);
+    rightLeg.wait();
+    feetDown(100);
+  }
+  wheelsStop(200);
 }
 void leftPirouette(int duration, int toeExtend) {
   rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, false);
@@ -273,11 +303,14 @@ void loop() {
   int distance, rightDistance, leftDistance;
   int count = 0;
   if (WALK_MODE) {
-    jump(5);
-    glide(2000);
-    tilt(3);
-    strutForward(2);
+    jump(6);
+    glideForward(2000);
+    glideLeft(4000);
+    glideRight(4000);
     pirouette(2000);
+    tilt(5);
+    glideTilt(8);
+    //    strutForward(2);
     walkForward(6);
   }
   feetUp(200);
@@ -285,7 +318,7 @@ void loop() {
     distance = sonar("Main");
     if (distance < COLLISION_DISTANCE) {
       Serial.println("COLLISION");
-      count=0;
+      count = 0;
       wheelsStop(0);
       wheelsBackward(400);
       wheelsRight(400);
@@ -298,16 +331,17 @@ void loop() {
         Serial.println("find new direction");
         findNewDirection();
       }
-    } else if ((distance < MAX_DISTANCE / 2)||(count<10)) {
+    } else if ((distance < MAX_DISTANCE / 2) || (count < 10)) {
       wheelsForward(800);
     } else if (WALK_MODE && (count > 50)) {
       switch (random(7)) {
-        case 0: glide(2000); break;
-        case 1: tilt(8); break;
-        case 2: leftPirouette(2000, true); break;
-        case 3: rightPirouette(2000, true); break;
-        case 4: strutForward(6); break;
-        case 5: jump(5); break;
+        case 0: glideForward(2000); break;
+        case 1: glideRight(2000); glideLeft(2000); break;
+        case 2: tilt(8); break;
+        case 3: leftPirouette(2000, true); break;
+        case 4: rightPirouette(2000, true); break;
+        case 5: strutForward(6); break;
+        case 6: jump(5); break;
         default: walkForward(6);
       }
       count = 0;

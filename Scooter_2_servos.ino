@@ -113,8 +113,8 @@ void detachServos() {
 void setup() {
   Serial.begin(115200);  // Open serial monitor at 115200 baud to see ping results.
   attachServos();
-  leftLeg.write(LEFT_LEG_DOWN, FAST_SPEED, true);
-  rightLeg.write(RIGHT_LEG_DOWN, FAST_SPEED, true);
+  leftLeg.write(LEFT_LEG_UP, FAST_SPEED, true);
+  rightLeg.write(RIGHT_LEG_UP, FAST_SPEED, true);
   leftWheel.write(LEFT_WHEEL_STOP, NA, true);
   rightWheel.write(RIGHT_WHEEL_STOP, NA, true);
   delay(3000);

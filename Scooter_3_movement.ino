@@ -16,30 +16,23 @@ const int SONIC_ECHO_PIN = 9;     // Arduino pin tied to echo pin on the ultraso
 const int MAX_DISTANCE = 200;       // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 const int COLLISION_DISTANCE = 40;  // in centimeters
 const int SHUTDOWN_TIMER = 10000;
-const int WALK_MODE = true;
 
 const int NA = 50;  //Not Apllicable
 const int SLOW_SPEED = 20;
-const int DEFAULT_SPEED = 40;
+const int MED_SPEED = 40;
 const int FAST_SPEED = 200;
 
-const int LEFT_WHEEL_FAST = 120;
 const int LEFT_WHEEL_FORWARD = 100;
 const int LEFT_WHEEL_STOP = 89;
 const int LEFT_WHEEL_BACKWARD = 80;
-const int RIGHT_WHEEL_FAST = 75;
 const int RIGHT_WHEEL_FORWARD = 80;
 const int RIGHT_WHEEL_STOP = 90;
 const int RIGHT_WHEEL_BACKWARD = 100;
 
 const int RIGHT_LEG_UP = 10;
-const int RIGHT_LEG_TILT = 70;
 const int RIGHT_LEG_DOWN = 90;
-const int RIGHT_LEG_EXTEND = 120;
 const int LEFT_LEG_UP = 160;
-const int LEFT_LEG_TILT = 100;
 const int LEFT_LEG_DOWN = 75;
-const int LEFT_LEG_EXTEND = 40;
 
 NewPing Sonar(SONIC_TRIGGER_PIN, SONIC_ECHO_PIN, MAX_DISTANCE);  // NewPing setup of pins and maximum distance.
 VarSpeedServo leftWheel, rightWheel, leftLeg, rightLeg;
@@ -47,35 +40,20 @@ VarSpeedServo leftWheel, rightWheel, leftLeg, rightLeg;
 //-- DIAGNOSTICS       ------------------------------------------//
 ///////////////////////////////////////////////////////////////////
 void testLegs() {
-  Serial.println("Right Leg Extend");
-  rightLeg.write(RIGHT_LEG_EXTEND, SLOW_SPEED, true);
-  delay(2000);
   Serial.println("Right Leg down");
   rightLeg.write(RIGHT_LEG_DOWN, SLOW_SPEED, true);
-  delay(2000);
-  Serial.println("Right Leg tilt");
-  rightLeg.write(RIGHT_LEG_TILT, SLOW_SPEED, true);
   delay(2000);
   Serial.println("Right Leg up");
   rightLeg.write(RIGHT_LEG_UP, SLOW_SPEED, true);
   delay(2000);
-  Serial.println("Left Leg Extend");
-  leftLeg.write(LEFT_LEG_EXTEND, SLOW_SPEED, true);
-  delay(2000);
-  Serial.println("Left Leg Extend");
+  Serial.println("Left Leg Down");
   leftLeg.write(LEFT_LEG_DOWN, SLOW_SPEED, true);
   delay(2000);
-  Serial.println("Left Leg Extend");
-  leftLeg.write(LEFT_LEG_TILT, SLOW_SPEED, true);
-  delay(2000);
-  Serial.println("Left Leg Extend");
-  leftLeg.write(LEFT_LEG_UP, SLOW_SPEED, true);
-  delay(2000);
-  Serial.println("Right Wheel Turn");
+  Serial.println("Right Wheel Forward");
   rightWheel.write(RIGHT_WHEEL_FORWARD, NA, true);
   delay(5000);
   rightWheel.write(RIGHT_WHEEL_STOP, NA, true);
-  Serial.println("Left Wheel Turn");
+  Serial.println("Left Wheel Forward");
   leftLeg.write(LEFT_WHEEL_FORWARD, NA, true);
   delay(5000);
   leftLeg.write(LEFT_WHEEL_STOP, NA, true);
@@ -113,11 +91,6 @@ void wheelsForward(int duration) {
   rightWheel.write(RIGHT_WHEEL_FORWARD, NA, false);
   delay(duration);
 }
-void wheelsFastForward(int duration) {
-  leftWheel.write(LEFT_WHEEL_FAST, NA, false);
-  rightWheel.write(RIGHT_WHEEL_FAST, NA, false);
-  delay(duration);
-}
 void wheelsBackward(int duration) {
   rightWheel.write(RIGHT_WHEEL_BACKWARD, NA, false);
   leftWheel.write(LEFT_WHEEL_BACKWARD, NA, false);
@@ -132,20 +105,6 @@ void wheelsLeft(int duration) {
   rightWheel.write(RIGHT_WHEEL_FORWARD, NA, false);
   leftWheel.write(LEFT_WHEEL_BACKWARD, NA, false);
   wheelsStop(duration);
-}
-void feetDown(int duration) {
-  delay(duration);
-  leftLeg.write(LEFT_LEG_DOWN, FAST_SPEED, false);
-  rightLeg.write(RIGHT_LEG_DOWN, FAST_SPEED, false);
-  leftLeg.wait();
-  rightLeg.wait();
-}
-void feetUp(int duration) {
-  delay(duration);
-  leftLeg.write(LEFT_LEG_UP, FAST_SPEED, false);
-  rightLeg.write(RIGHT_LEG_UP, FAST_SPEED, false);
-  leftLeg.wait();
-  rightLeg.wait();
 }
 void wheelsStop(int duration) {
   delay(duration);
@@ -169,8 +128,8 @@ void findNewDirection() {
 void setup() {
   Serial.begin(115200);  // Open serial monitor at 115200 baud to see ping results.
   attachServos();
-  leftLeg.write(LEFT_LEG_DOWN, FAST_SPEED, true);
-  rightLeg.write(RIGHT_LEG_DOWN, FAST_SPEED, true);
+  leftLeg.write(LEFT_LEG_UP, FAST_SPEED, true);
+  rightLeg.write(RIGHT_LEG_UP, FAST_SPEED, true);
   leftWheel.write(LEFT_WHEEL_STOP, NA, true);
   rightWheel.write(RIGHT_WHEEL_STOP, NA, true);
   delay(3000);

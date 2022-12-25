@@ -60,13 +60,13 @@ void testLegs() {
   Serial.println("Left Leg Extend");
   leftLeg.write(LEFT_LEG_EXTEND, SLOW_SPEED, true);
   delay(2000);
-  Serial.println("Left Leg Extend");
+  Serial.println("Left Leg Down");
   leftLeg.write(LEFT_LEG_DOWN, SLOW_SPEED, true);
   delay(2000);
-  Serial.println("Left Leg Extend");
+  Serial.println("Left Leg Tilt");
   leftLeg.write(LEFT_LEG_TILT, SLOW_SPEED, true);
   delay(2000);
-  Serial.println("Left Leg Extend");
+  Serial.println("Left Leg Up");
   leftLeg.write(LEFT_LEG_UP, SLOW_SPEED, true);
   delay(2000);
   Serial.println("Right Wheel Turn");

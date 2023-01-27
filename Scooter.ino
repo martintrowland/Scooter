@@ -305,12 +305,12 @@ void loop() {
   if (WALK_MODE) {
     jump(6);
     glideForward(2000);
-    glideLeft(4000);
-    glideRight(4000);
+    glideLeft(2000);
+    glideRight(2000);
     pirouette(2000);
     tilt(5);
-    glideTilt(8);
-    //    strutForward(2);
+    glideTilt(6);
+    strutForward(2);
     walkForward(6);
   }
   feetUp(200);
@@ -333,16 +333,16 @@ void loop() {
       }
     } else if ((distance < MAX_DISTANCE / 2) || (count < 10)) {
       wheelsForward(800);
-    } else if (WALK_MODE && (count > 50)) {
+    } else if (WALK_MODE && (count > 5)) {
       switch (random(7)) {
-        case 0: glideForward(2000); break;
-        case 1: glideRight(2000); glideLeft(2000); break;
-        case 2: tilt(8); break;
-        case 3: leftPirouette(2000, true); break;
-        case 4: rightPirouette(2000, true); break;
-        case 5: strutForward(6); break;
+        case 0: glideForward(1000); break;
+        case 1: glideRight(500); glideLeft(500); break;
+        case 2: tilt(4); break;
+        case 3: leftPirouette(1000, true); break;
+        case 4: rightPirouette(1000, true); break;
+        case 5: strutForward(4); break;
         case 6: jump(5); break;
-        default: walkForward(6);
+        default: walkForward(4);
       }
       count = 0;
       feetUp(200);

@@ -185,18 +185,18 @@ void glideRight(int duration) {
   wheelsStop(duration);
 }
 void glideTilt(int steps) {
-  feetDown(100);
+  feetDown(200);
   leftWheel.write(LEFT_WHEEL_FORWARD, NA, false);
   rightWheel.write(RIGHT_WHEEL_BACKWARD, NA, false);
   for (int i = 0; i < steps; i++) {
     leftLeg.write(LEFT_LEG_TILT, FAST_SPEED, false);
     rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, true);
     leftLeg.wait();
-    feetDown(100);
+    feetDown(200);
     rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, false);
     leftLeg.write(LEFT_LEG_TILT, SLOW_SPEED, true);
     rightLeg.wait();
-    feetDown(100);
+    feetDown(200);
   }
   wheelsStop(200);
 }
@@ -232,19 +232,19 @@ void pirouette(int duration) {
   delay(400);
   feetDown(200);
   rightPirouette(duration, true);
-  feetDown(400);
+  feetDown(200);
 }
 void tilt(int steps) {
-  feetDown(100);
+  feetDown(200);
   for (int i = 0; i < steps; i++) {
     leftLeg.write(LEFT_LEG_TILT, FAST_SPEED, false);
     rightLeg.write(RIGHT_LEG_TILT, SLOW_SPEED, true);
     leftLeg.wait();
-    feetDown(100);
+    feetDown(200);
     rightLeg.write(RIGHT_LEG_TILT, FAST_SPEED, false);
     leftLeg.write(LEFT_LEG_TILT, SLOW_SPEED, true);
     rightLeg.wait();
-    feetDown(100);
+    feetDown(200);
   }
   feetDown(200);
 }
@@ -258,7 +258,7 @@ void jump(int steps) {
   }
 }
 void strutForward(int steps) {
-  feetDown(100);
+  feetDown(200);
   for (int i = 0; i < steps; i++) {
     leftPirouette(300, true);
     feetDown(100);
@@ -267,8 +267,28 @@ void strutForward(int steps) {
   }
   feetDown(100);
 }
+void spinRight(int steps) {
+  feetDown(200);
+  rightLeg.write(RIGHT_LEG_UP, MED_SPEED, true);
+  for (int i = 0; i < steps; i++) {
+    rightWheel.write(RIGHT_WHEEL_FORWARD, MED_SPEED, false);
+    leftWheel.write(LEFT_WHEEL_FORWARD, NA, true);
+    delay(200);
+  }
+  feetDown(200);
+}
+void spinLeft(int steps) {
+  feetDown(200);
+  leftLeg.write(LEFT_LEG_UP, MED_SPEED, true);
+  for (int i = 0; i < steps; i++) {
+    leftWheel.write(LEFT_WHEEL_FORWARD, MED_SPEED, false);
+    rightWheel.write(RIGHT_WHEEL_FORWARD, NA, true);
+    delay(200);
+  }
+  feetDown(200);
+}
 void walkForward(int steps) {
-  feetDown(100);
+  feetDown(200);
   for (int i = 0; i < steps; i++) {
     rightLeg.write(RIGHT_LEG_EXTEND, FAST_SPEED, false);
     leftLeg.write(LEFT_LEG_TILT, FAST_SPEED, true);
@@ -306,7 +326,9 @@ void loop() {
     jump(6);
     glideForward(2000);
     glideLeft(2000);
+    spinRight(3);
     glideRight(2000);
+    spinLeft(3);
     pirouette(2000);
     tilt(5);
     glideTilt(6);
@@ -333,21 +355,24 @@ void loop() {
       }
     } else if ((distance < MAX_DISTANCE / 2) || (count < 10)) {
       wheelsForward(800);
-    } else if (WALK_MODE && (count > 5)) {
-      switch (random(7)) {
-        case 0: glideForward(1000); break;
-        case 1: glideRight(500); glideLeft(500); break;
-        case 2: tilt(4); break;
+    } else if (WALK_MODE && (count > 2)) {
+      wheelsStop(200);
+      switch (random(9)) {
+        case 0: glideForward(500); break;
+        case 1: glideRight(300); glideLeft(300); break;
+        case 2: tilt(3); break;
         case 3: leftPirouette(1000, true); break;
         case 4: rightPirouette(1000, true); break;
-        case 5: strutForward(4); break;
+        case 5: strutForward(3); break;
         case 6: jump(5); break;
+        case 7: spinLeft(3); break;
+        case 8: spinRight(3); break;
         default: walkForward(4);
       }
       count = 0;
       feetUp(200);
     } else {
-      wheelsFastForward(800);
+      wheelsFastForward(600);
     }
     ++count;
     Serial.println(count);

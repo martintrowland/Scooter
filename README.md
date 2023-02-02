@@ -1,5 +1,5 @@
 # Scooter
-Scooter Scout for Troop 605 robotics
+Scooter Scout for Troop 605 Robotics Merit Badge
 
 This repository contains all the files to teach the BSA Scouts Merit Badge and build an autonomous robot. The Robot has a cost of about $30 worth of components. 
 

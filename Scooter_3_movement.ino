@@ -54,9 +54,9 @@ void testLegs() {
   delay(5000);
   rightWheel.write(RIGHT_WHEEL_STOP, NA, true);
   Serial.println("Left Wheel Forward");
-  leftLeg.write(LEFT_WHEEL_FORWARD, NA, true);
+  leftWheel.write(LEFT_WHEEL_FORWARD, NA, true);
   delay(5000);
-  leftLeg.write(LEFT_WHEEL_STOP, NA, true);
+  leftWheel.write(LEFT_WHEEL_STOP, NA, true);
 }
 ///////////////////////////////////////////////////////////////////
 //-- Basic Routines    ------------------------------------------//

@@ -24,8 +24,8 @@ const int FAST_SPEED = 200;
 
 const int LEFT_WHEEL_FORWARD = 100;
 const int LEFT_WHEEL_STOP = 89;
-const int LEFT_WHEEL_BACKWARD = 80;
-const int RIGHT_WHEEL_FORWARD = 80;
+const int LEFT_WHEEL_BACKWARD = 75;
+const int RIGHT_WHEEL_FORWARD = 75;
 const int RIGHT_WHEEL_STOP = 90;
 const int RIGHT_WHEEL_BACKWARD = 100;
 

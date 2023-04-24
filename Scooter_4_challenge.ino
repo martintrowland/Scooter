@@ -98,7 +98,7 @@ void loop() {
     }
     wheelsFastForward(600);
     Serial.print("Loop ");
-  } while (++count>200);
+  } while (++count<200);
   detachServos();
   exit(0);
 }

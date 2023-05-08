@@ -18,28 +18,31 @@ const int MAX_DISTANCE = 200;              // Maximum distance we want to ping f
 const int COLLISION_DISTANCE = 40;         // in centimeters
 const int NA = 50; //Not Apllicable
 
-#define ROBOT_I
+///////////////////////////////////////////////////////////////////
+//-- Select the Robot Letter                                     //
+///////////////////////////////////////////////////////////////////
+#define ROBOT_1
 
 #ifdef ROBOT_A
 const int SLOW_SPEED = 20;
 const int DEFAULT_SPEED = 40;
 const int FAST_SPEED = 200;
 
-const int RIGHT_WHEEL_FAST = 75;
-const int RIGHT_WHEEL_FORWARD = 85;
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
 const int RIGHT_WHEEL_STOP = 90;
 const int RIGHT_WHEEL_BACKWARD = 110;
-const int LEFT_WHEEL_FAST = 120;
-const int LEFT_WHEEL_FORWARD = 95;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 100;
 const int LEFT_WHEEL_STOP = 90;
 const int LEFT_WHEEL_BACKWARD = 80;
 
-const int RIGHT_LEG_UP = 0;
+const int RIGHT_LEG_UP = 5;
 const int RIGHT_LEG_TILT = 60;
 const int RIGHT_LEG_DOWN = 100;
-const int RIGHT_LEG_EXTEND = 120;
-const int LEFT_LEG_UP = 160;
-const int LEFT_LEG_TILT = 70;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 150;
+const int LEFT_LEG_TILT = 80;
 const int LEFT_LEG_DOWN = 50;
 const int LEFT_LEG_EXTEND = 20;
 #endif
@@ -48,93 +51,92 @@ const int SLOW_SPEED = 20;
 const int DEFAULT_SPEED = 40;
 const int FAST_SPEED = 200;
 
-const int RIGHT_WHEEL_FAST = 60;
-const int RIGHT_WHEEL_FORWARD = 85;
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 83;
 const int RIGHT_WHEEL_STOP = 90;
-const int RIGHT_WHEEL_BACKWARD = 105;
-const int LEFT_WHEEL_FAST = 120;
-const int LEFT_WHEEL_FORWARD = 95;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 97;
 const int LEFT_WHEEL_STOP = 90;
-const int LEFT_WHEEL_BACKWARD = 80;
+const int LEFT_WHEEL_BACKWARD = 75;
 
 const int RIGHT_LEG_UP = 5;
-const int RIGHT_LEG_TILT = 70;
-const int RIGHT_LEG_DOWN = 100;
+const int RIGHT_LEG_TILT = 60;
+const int RIGHT_LEG_DOWN = 95;
 const int RIGHT_LEG_EXTEND = 120;
-const int LEFT_LEG_UP = 155;
-const int LEFT_LEG_TILT = 90;
-const int LEFT_LEG_DOWN = 50;
+const int LEFT_LEG_UP = 165;
+const int LEFT_LEG_TILT = 100;
+const int LEFT_LEG_DOWN = 55;
 const int LEFT_LEG_EXTEND = 30;
-
 #endif
 #ifdef ROBOT_C
 const int SLOW_SPEED = 20;
 const int DEFAULT_SPEED = 40;
 const int FAST_SPEED = 200;
 
-const int RIGHT_WHEEL_FAST = 60;
+const int RIGHT_WHEEL_FAST = 70;
 const int RIGHT_WHEEL_FORWARD = 85;
 const int RIGHT_WHEEL_STOP = 90;
 const int RIGHT_WHEEL_BACKWARD = 105;
-const int LEFT_WHEEL_FAST = 120;
+const int LEFT_WHEEL_FAST = 110;
 const int LEFT_WHEEL_FORWARD = 95;
-const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_STOP = 89;
 const int LEFT_WHEEL_BACKWARD = 80;
 
 const int RIGHT_LEG_UP = 10;
 const int RIGHT_LEG_TILT = 80;
 const int RIGHT_LEG_DOWN = 110;
-const int RIGHT_LEG_EXTEND = 130;
+const int RIGHT_LEG_EXTEND = 135;
 const int LEFT_LEG_UP = 150;
-const int LEFT_LEG_TILT = 80;
+const int LEFT_LEG_TILT = 90;
 const int LEFT_LEG_DOWN = 40;
-const int LEFT_LEG_EXTEND = 20;
+const int LEFT_LEG_EXTEND = 15;
 #endif
 #ifdef ROBOT_D
-const int SLOW_SPEED = 50;
-const int DEFAULT_SPEED = 60;
-const int FAST_SPEED = 200;
-
-const int RIGHT_WHEEL_FAST = 60;
-const int RIGHT_WHEEL_FORWARD = 80;
-const int RIGHT_WHEEL_STOP = 90;
-const int RIGHT_WHEEL_BACKWARD = 105;
-const int LEFT_WHEEL_FAST = 120;
-const int LEFT_WHEEL_FORWARD = 95;
-const int LEFT_WHEEL_STOP = 90;
-const int LEFT_WHEEL_BACKWARD = 80;
-
-const int RIGHT_LEG_UP = 10;
-const int RIGHT_LEG_TILT = 80;
-const int RIGHT_LEG_DOWN = 95;
-const int RIGHT_LEG_EXTEND = 130;
-const int LEFT_LEG_UP = 130;
-const int LEFT_LEG_TILT = 60;
-const int LEFT_LEG_DOWN = 50;
-const int LEFT_LEG_EXTEND = 10;
-#endif
-#ifdef ROBOT_E
 const int SLOW_SPEED = 20;
 const int DEFAULT_SPEED = 40;
 const int FAST_SPEED = 200;
 
 const int RIGHT_WHEEL_FAST = 70;
 const int RIGHT_WHEEL_FORWARD = 80;
-const int RIGHT_WHEEL_STOP = 84;
-const int RIGHT_WHEEL_BACKWARD = 95;
+const int RIGHT_WHEEL_STOP = 90;
+const int RIGHT_WHEEL_BACKWARD = 100;
 const int LEFT_WHEEL_FAST = 120;
-const int LEFT_WHEEL_FORWARD = 95;
+const int LEFT_WHEEL_FORWARD = 100;
 const int LEFT_WHEEL_STOP = 90;
 const int LEFT_WHEEL_BACKWARD = 80;
 
-const int RIGHT_LEG_UP = 5;
-const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 75;
+const int RIGHT_LEG_DOWN = 115;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 150;
+const int LEFT_LEG_TILT = 85;
+const int LEFT_LEG_DOWN = 50;
+const int LEFT_LEG_EXTEND = 30;
+#endif
+#ifdef ROBOT_E
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 60;
+const int RIGHT_WHEEL_FORWARD = 78;
+const int RIGHT_WHEEL_STOP = 84;
+const int RIGHT_WHEEL_BACKWARD = 95;
+const int LEFT_WHEEL_FAST = 130;
+const int LEFT_WHEEL_FORWARD = 110;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 60;
 const int RIGHT_LEG_DOWN = 95;
 const int RIGHT_LEG_EXTEND = 120;
 const int LEFT_LEG_UP = 150;
-const int LEFT_LEG_TILT = 70;
+const int LEFT_LEG_TILT = 80;
 const int LEFT_LEG_DOWN = 50;
-const int LEFT_LEG_EXTEND = 30;
+const int LEFT_LEG_EXTEND = 10;
 #endif
 #ifdef ROBOT_F
 const int SLOW_SPEED = 20;
@@ -165,20 +167,20 @@ const int DEFAULT_SPEED = 40;
 const int FAST_SPEED = 200;
 
 const int RIGHT_WHEEL_FAST = 75;
-const int RIGHT_WHEEL_FORWARD = 82;
+const int RIGHT_WHEEL_FORWARD = 80;
 const int RIGHT_WHEEL_STOP = 89;
 const int RIGHT_WHEEL_BACKWARD = 100;
 const int LEFT_WHEEL_FAST = 110;
-const int LEFT_WHEEL_FORWARD = 95;
+const int LEFT_WHEEL_FORWARD = 100;
 const int LEFT_WHEEL_STOP = 90;
 const int LEFT_WHEEL_BACKWARD = 80;
 
 const int RIGHT_LEG_UP = 10;
-const int RIGHT_LEG_TILT = 60;
+const int RIGHT_LEG_TILT = 50;
 const int RIGHT_LEG_DOWN = 100;
 const int RIGHT_LEG_EXTEND = 120;
 const int LEFT_LEG_UP = 160;
-const int LEFT_LEG_TILT = 75;
+const int LEFT_LEG_TILT = 85;
 const int LEFT_LEG_DOWN = 50;
 const int LEFT_LEG_EXTEND = 20;
 #endif
@@ -187,8 +189,8 @@ const int SLOW_SPEED = 20;
 const int DEFAULT_SPEED = 40;
 const int FAST_SPEED = 200;
 
-const int RIGHT_WHEEL_FAST = 75;
-const int RIGHT_WHEEL_FORWARD = 85;
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
 const int RIGHT_WHEEL_STOP = 90;
 const int RIGHT_WHEEL_BACKWARD = 100;
 const int LEFT_WHEEL_FAST = 110;
@@ -228,7 +230,29 @@ const int LEFT_LEG_TILT = 85;
 const int LEFT_LEG_DOWN = 60;
 const int LEFT_LEG_EXTEND = 30;
 #endif
+#ifdef ROBOT_1
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
 
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 88;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 100;
+const int LEFT_WHEEL_STOP = 87;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 20;
+const int RIGHT_LEG_TILT = 65;
+const int RIGHT_LEG_DOWN = 90;
+const int RIGHT_LEG_EXTEND = 120;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 95;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
 NewPing Sonar(SONIC_TRIGGER_PIN, SONIC_ECHO_PIN, MAX_DISTANCE);  // NewPing setup of pins and maximum distance.
 VarSpeedServo leftWheel, rightWheel, leftLeg, rightLeg;
 ///////////////////////////////////////////////////////////////////

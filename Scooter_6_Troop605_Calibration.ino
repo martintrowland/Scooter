@@ -21,7 +21,7 @@ const int NA = 50; //Not Apllicable
 ///////////////////////////////////////////////////////////////////
 //-- Select the Robot Letter                                     //
 ///////////////////////////////////////////////////////////////////
-#define ROBOT_1
+#define ROBOT_L
 
 #ifdef ROBOT_A
 const int SLOW_SPEED = 20;
@@ -230,6 +230,75 @@ const int LEFT_LEG_TILT = 85;
 const int LEFT_LEG_DOWN = 60;
 const int LEFT_LEG_EXTEND = 30;
 #endif
+#ifdef ROBOT_J
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 89;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 100;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 100;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 85;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
+#ifdef ROBOT_K
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 89;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 100;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 100;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 85;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
+#ifdef ROBOT_L
+const int SLOW_SPEED = 30;
+const int DEFAULT_SPEED = 50;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 65;
+const int RIGHT_WHEEL_FORWARD = 78;
+const int RIGHT_WHEEL_STOP = 90;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 95;
+const int LEFT_WHEEL_STOP = 88;
+const int LEFT_WHEEL_BACKWARD = 76;
+
+const int RIGHT_LEG_UP = 1;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 100;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 85;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
 #ifdef ROBOT_1
 const int SLOW_SPEED = 20;
 const int DEFAULT_SPEED = 40;
@@ -250,6 +319,52 @@ const int RIGHT_LEG_DOWN = 90;
 const int RIGHT_LEG_EXTEND = 120;
 const int LEFT_LEG_UP = 160;
 const int LEFT_LEG_TILT = 95;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
+#ifdef ROBOT_2
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 89;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 95;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 60;
+const int RIGHT_LEG_DOWN = 90;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 100;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 20;
+#endif
+#ifdef ROBOT_4
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 90;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 100;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 95;
+const int RIGHT_LEG_EXTEND = 140;
+const int LEFT_LEG_UP = 170;
+const int LEFT_LEG_TILT = 100;
 const int LEFT_LEG_DOWN = 60;
 const int LEFT_LEG_EXTEND = 30;
 #endif
@@ -341,13 +456,13 @@ void testLegs() {
 }
 void findStop() {
   Serial.println("Find Right Wheel Stop");
-  for (int i = 82; i < 95; i++) {
+  for (int i = 87; i < 93; i++) {
     Serial.println(i);
     rightWheel.write(i, NA, true);
     delay(3000);
   }
   Serial.println("Find Left Wheel Stop");
-  for (int i = 82; i < 95; i++) {
+  for (int i = 87; i < 93; i++) {
     Serial.println(i);
     leftWheel.write(i, NA, true);
     delay(3000);
@@ -420,9 +535,9 @@ void loop() {
     Serial.println(x);
     switch (x) {
       case '1':
-        for (y = 1; y < 10; y++) {
+        for (y = 1; y < 20; y++) {
           distance = sonar("TestSonar");
-          delay(500);
+          delay(1000);
         }
         break;
       case '2':

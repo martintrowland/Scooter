@@ -23,7 +23,7 @@ const int NA = 50; //Not Apllicable
 ///////////////////////////////////////////////////////////////////
 //-- Select the Robot Letter                                     //
 ///////////////////////////////////////////////////////////////////
-#define ROBOT_1
+#define ROBOT_L
 
 #ifdef ROBOT_A
 const int SLOW_SPEED = 20;
@@ -232,6 +232,75 @@ const int LEFT_LEG_TILT = 85;
 const int LEFT_LEG_DOWN = 60;
 const int LEFT_LEG_EXTEND = 30;
 #endif
+#ifdef ROBOT_J
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 89;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 100;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 100;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 85;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
+#ifdef ROBOT_K
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 65;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 90;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 115;
+const int LEFT_WHEEL_FORWARD = 118;
+const int LEFT_WHEEL_STOP = 92;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 100;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 85;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
+#ifdef ROBOT_L
+const int SLOW_SPEED = 30;
+const int DEFAULT_SPEED = 50;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 65;
+const int RIGHT_WHEEL_FORWARD = 78;
+const int RIGHT_WHEEL_STOP = 90;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 95;
+const int LEFT_WHEEL_STOP = 88;
+const int LEFT_WHEEL_BACKWARD = 76;
+
+const int RIGHT_LEG_UP = 1;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 100;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 85;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
 #ifdef ROBOT_1
 const int SLOW_SPEED = 20;
 const int DEFAULT_SPEED = 40;
@@ -253,9 +322,54 @@ const int RIGHT_LEG_EXTEND = 120;
 const int LEFT_LEG_UP = 160;
 const int LEFT_LEG_TILT = 95;
 const int LEFT_LEG_DOWN = 60;
-const int LEFT_LEG_EXTEND = 30; 
+const int LEFT_LEG_EXTEND = 30;
 #endif
+#ifdef ROBOT_2
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 40;
+const int FAST_SPEED = 200;
 
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 89;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 110;
+const int LEFT_WHEEL_FORWARD = 95;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 60;
+const int RIGHT_LEG_DOWN = 90;
+const int RIGHT_LEG_EXTEND = 130;
+const int LEFT_LEG_UP = 160;
+const int LEFT_LEG_TILT = 100;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 20;
+#endif
+#ifdef ROBOT_4
+const int SLOW_SPEED = 20;
+const int DEFAULT_SPEED = 30;
+const int FAST_SPEED = 200;
+
+const int RIGHT_WHEEL_FAST = 70;
+const int RIGHT_WHEEL_FORWARD = 80;
+const int RIGHT_WHEEL_STOP = 90;
+const int RIGHT_WHEEL_BACKWARD = 100;
+const int LEFT_WHEEL_FAST = 120;
+const int LEFT_WHEEL_FORWARD = 110;
+const int LEFT_WHEEL_STOP = 90;
+const int LEFT_WHEEL_BACKWARD = 80;
+
+const int RIGHT_LEG_UP = 10;
+const int RIGHT_LEG_TILT = 70;
+const int RIGHT_LEG_DOWN = 95;
+const int RIGHT_LEG_EXTEND = 140;
+const int LEFT_LEG_UP = 170;
+const int LEFT_LEG_TILT = 100;
+const int LEFT_LEG_DOWN = 60;
+const int LEFT_LEG_EXTEND = 30;
+#endif
 
 NewPing Sonar(SONIC_TRIGGER_PIN, SONIC_ECHO_PIN, MAX_DISTANCE);  // NewPing setup of pins and maximum distance.
 VarSpeedServo leftWheel, rightWheel, leftLeg, rightLeg;
@@ -297,18 +411,29 @@ VarSpeedServo leftWheel, rightWheel, leftLeg, rightLeg;
 void loop() {
   int distance, rightDistance, leftDistance;
   int count = 0;
-  // feetUp(200);
-  // wheelsForward(10000);
+  //  feetUp(200);
+  //  wheelsForward(10000);
   //  exit(1);
+  //glideForward(600);
+  //delay(1000);
+  //glideBackward(1000);
+  //delay(1000);
+  //glideLeft(600);
+  //delay(1000);
+  //glideRight(600);
+  //delay(200);
+  //leftPirouette(200, true);
+  //rightPirouette(200, true);
+  delay(1000);
   jump(6);
-  tilt(2);
   strutForward(2);
+  walkForward(6);
   feetUp(200);
   do {
     wheelsStop(200);
-    while((distance = sonar("Main")) < COLLISION_DISTANCE) {
+    while ((distance = sonar("Main")) < COLLISION_DISTANCE) {
       Serial.println("COLLISION");
-      wheelsRight(300);
+      wheelsRight(90);
       wheelsStop(200);
       delay(500);
     }
@@ -427,9 +552,9 @@ void feetDown(int duration) {
 }
 void feetUp(int duration) {
   delay(duration);
-  leftLeg.write(LEFT_LEG_UP, FAST_SPEED, false);
-  rightLeg.write(RIGHT_LEG_UP, FAST_SPEED, false);
+  leftLeg.write(LEFT_LEG_UP, SLOW_SPEED, false);
   leftLeg.wait();
+  rightLeg.write(RIGHT_LEG_UP, FAST_SPEED, false);
   rightLeg.wait();
 }
 void wheelsStop(int duration) {
